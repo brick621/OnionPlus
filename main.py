@@ -37,7 +37,8 @@ for plugin in plugins.values():
     plugin.load(data)
 commands = {
     "beg": plugins["simplegain"].beg,
-    "cash": plugins["see"].cash
+    "cash": plugins["see"].cash,
+    "gear": plugins["see"].gear
 }
 
 while True:
