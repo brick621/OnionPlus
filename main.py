@@ -1,5 +1,6 @@
 import datetime
 import importlib
+import inspect
 import json
 import os
 from pathlib import Path
@@ -41,6 +42,11 @@ commands = {
 }
 
 while True:
-    command = input(f"{colours.BOLD}> {colours.ENDC}")
+    prompt = input(f"{colours.BOLD}> {colours.ENDC}").split(" ")
+    if not prompt:
+        continue
+    command = prompt[0]
     if command in commands:
-        commands[command]()
+        args = inspect.getfullargspec(commands[command])[0]
+        if len(prompt) >= 1 + len(args):
+            commands[command](*prompt[1:1+len(args)])
