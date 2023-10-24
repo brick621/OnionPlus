@@ -15,7 +15,7 @@ def beg() -> None:
         print('"' + utils.choice("yesbeg").format(given_money) + '"')
     else:
         # No money :(
-        print('"' + utils.choice("people"), utils.choice("nobeg") + '"')
+        print('"' + utils.choice("nobeg") + '"')
 
 def load(savedata) -> None:
     global data
