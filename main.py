@@ -31,7 +31,8 @@ data = utils.SaveData(name, not load)
 
 plugins = {
     "simplegain": importlib.import_module("simplegain"),
-    "see": importlib.import_module("see")
+    "see": importlib.import_module("see"),
+    "interact": importlib.import_module("interact")
 }
 for plugin in plugins.values():
     # Make the data global in each plugin
@@ -39,7 +40,8 @@ for plugin in plugins.values():
 commands = {
     "beg": plugins["simplegain"].beg,
     "cash": plugins["see"].cash,
-    "gear": plugins["see"].gear
+    "gear": plugins["see"].gear,
+    "equip": plugins["interact"].equip
 }
 
 while True:
