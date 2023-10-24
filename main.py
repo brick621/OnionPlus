@@ -41,7 +41,8 @@ commands = {
     "beg": plugins["simplegain"].beg,
     "cash": plugins["see"].cash,
     "gear": plugins["see"].gear,
-    "equip": plugins["interact"].equip
+    "equip": plugins["interact"].equip,
+    "unequip": plugins["interact"].unequip
 }
 
 while True:

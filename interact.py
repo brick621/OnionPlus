@@ -13,6 +13,20 @@ def equip(gear: str) -> None:
     data.save()
     print(f"{colours.OKGREEN}{gear} successfully equiped!{colours.ENDC}")
 
+def unequip(gear: str) -> None:
+    """unequip a piece of gear"""
+    gear = gear.lower()
+    for slot, value in data.gear.items():
+        if value == gear:
+            data.gear[slot] = None
+            break
+    else:
+        print(f"{colours.FAIL}You don't have that gear equiped!{colour.ENDC}")
+        return
+    data.inventory.append(gear)
+    data.save()
+    print(f"{colours.OKGREEN}{gear} successfully unequiped!{colours.ENDC}")
+
 def load(savedata) -> None:
     global data
     data = savedata
