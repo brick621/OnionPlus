@@ -1,3 +1,5 @@
+"""Commands for miscellaneous purposes."""
+
 import inspect
 import sys
 
@@ -10,7 +12,8 @@ def help() -> None:
     """Describe what each command does"""
     print(f"{colours.HEADER}HELP{colours.ENDC}")
     for plugin in plugins.values():
-        print(f"\n{colours.UNDERLINE}{plugin.__name__}{colours.ENDC}")
+        print(f"\n{colours.UNDERLINE}{plugin.__name__} -",
+              f"{inspect.getdoc(plugin)}{colours.ENDC}")
         for name, value in inspect.getmembers(plugin, inspect.isfunction):
             if name != "load":
                 args = inspect.getfullargspec(value)[0]

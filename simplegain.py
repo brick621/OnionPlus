@@ -1,3 +1,5 @@
+"""Commands for simple methods of getting money and items."""
+
 import random
 
 import utils

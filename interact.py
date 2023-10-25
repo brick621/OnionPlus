@@ -1,3 +1,5 @@
+"""Commands for interacting with items."""
+
 import colours
 import utils
 

@@ -1,3 +1,5 @@
+"""Commands for seeing your items and money etc."""
+
 import colours
 
 data = None
