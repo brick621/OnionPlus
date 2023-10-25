@@ -17,6 +17,9 @@ _STARTING_GEAR = {
     "ring-r": None
 }
 
+with open(os.path.join("resources", "items.json")) as f:
+    ITEMS = json.load(f)
+
 class SaveData:
     """User save data for the game."""
 
