@@ -34,16 +34,13 @@ plugins = {
     "see": importlib.import_module("see"),
     "interact": importlib.import_module("interact")
 }
+# Get every command in each plugin
+commands = {}
 for plugin in plugins.values():
-    # Make the data global in each plugin
     plugin.load(data)
-commands = {
-    "beg": plugins["simplegain"].beg,
-    "cash": plugins["see"].cash,
-    "gear": plugins["see"].gear,
-    "equip": plugins["interact"].equip,
-    "unequip": plugins["interact"].unequip
-}
+    for name, value in inspect.getmembers(plugin, inspect.isfunction):
+        if name != "load":
+            commands[name] = value
 
 while True:
     prompt = input(f"{colours.BOLD}> {colours.ENDC}").split(" ")
