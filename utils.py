@@ -47,7 +47,7 @@ class SaveData:
             "savedata": {
                 "money": self.money,
                 "inventory": self.inventory,
-                "max_inventory": self.max_inventory
+                "max_inventory": self.max_inventory,
                 "gear": {
                     "hat": self.gear["hat"],
                     "back": self.gear["back"],
