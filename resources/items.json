@@ -1,0 +1,11 @@
+{
+    "knapsack": {
+        "buy-price": 20,
+        "sell-price": 15,
+        "type": "gear",
+        "slot": "back",
+        "equiped": {
+            "max-inventory": 5
+        }
+    }
+}
