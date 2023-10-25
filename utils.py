@@ -32,15 +32,32 @@ class SaveData:
         """
         self.name = name
         if not new:
-            with open(os.path.join("savefolder", f"{name}.json")) as f:
-                self._from_dict(json.load(f))
+            self.load()
         else:
             self._from_dict({"savedata": {}, "metadata": {}})
+
+    def add_item(self, item: str) -> bool:
+        """Add an item to inventory.
+
+        Arguments:
+        item -- the item to add
+
+        Returns True if successful, False otherwise.
+        """
+        if len(self.inventory) == self.max_inventory:
+            return False
+        else:
+            self.inventory.append(item)
+            return True
 
     def save(self) -> None:
         """Saves this savedata to {self.name}.json in savefolder"""
         with open(os.path.join("savefolder", f"{self.name}.json"), "w") as f:
             json.dump(self._to_dict(), f, indent=4)
+
+    def load(self) -> None:
+        with open(os.path.join("savefolder", f"{self.name}.json")) as f:
+            self._from_dict(json.load(f))
 
     def _to_dict(self) -> dict:
         return {
@@ -65,7 +82,7 @@ class SaveData:
     def _from_dict(self, values: dict) -> None:
         self.money = values["savedata"].get("money", _STARTING_MONEY)
         self.inventory = values["savedata"].get("inventory", _STARTING_INVENTORY)
-        self.max_inventory = values["savedata"].get("max_inventory", 0)
+        self.max_inventory = values["savedata"].get("max_inventory", 5)
         self.gear = values["savedata"].get("gear", _STARTING_GEAR)
         # Add any new gear slots that may have been added in updates
         for slot, value in _STARTING_GEAR.items():

@@ -40,12 +40,15 @@ def unequip(gear: str) -> None:
     else:
         print(f"{colours.FAIL}You don't have that gear equiped!{colours.ENDC}")
         return
-    data.inventory.append(gear)
     for attr, effect in utils.ITEMS[gear]["modifier"].items():
         current_value = getattr(data, attr, 0)
         setattr(data, attr, current_value - effect)
-    data.save()
-    print(f"{colours.OKGREEN}{gear} successfully unequiped!{colours.ENDC}")
+    if data.add_item(gear):
+        data.save()
+        print(f"{colours.OKGREEN}{gear} successfully unequiped!{colours.ENDC}")
+    else:
+        data.load()
+        print(f"{colours.FAIL}This piece of gear is critical for max inventory!{colours.ENDC}")
 
 def load(savedata) -> None:
     global data
