@@ -15,7 +15,8 @@ def equip(gear: str) -> None:
     if gear not in data.inventory:
         print(f"{colours.FAIL}You don't have this gear!{colours.ENDC}")
         return
-    data.gear["back"] = gear # temporary
+
+    data.gear[utils.ITEMS[gear]["slot"]] = gear
     data.inventory.remove(gear)
     data.save()
     print(f"{colours.OKGREEN}{gear} successfully equiped!{colours.ENDC}")
@@ -34,7 +35,7 @@ def unequip(gear: str) -> None:
             data.gear[slot] = None
             break
     else:
-        print(f"{colours.FAIL}You don't have that gear equiped!{colour.ENDC}")
+        print(f"{colours.FAIL}You don't have that gear equiped!{colours.ENDC}")
         return
     data.inventory.append(gear)
     data.save()
