@@ -18,6 +18,9 @@ def equip(gear: str) -> None:
 
     data.gear[utils.ITEMS[gear]["slot"]] = gear
     data.inventory.remove(gear)
+    for attr, effect in utils.ITEMS[gear]["modifier"].items():
+        current_value = getattr(data, attr, 0)
+        setattr(data, attr, current_value + effect)
     data.save()
     print(f"{colours.OKGREEN}{gear} successfully equiped!{colours.ENDC}")
 
@@ -38,6 +41,9 @@ def unequip(gear: str) -> None:
         print(f"{colours.FAIL}You don't have that gear equiped!{colours.ENDC}")
         return
     data.inventory.append(gear)
+    for attr, effect in utils.ITEMS[gear]["modifier"].items():
+        current_value = getattr(data, attr, 0)
+        setattr(data, attr, current_value - effect)
     data.save()
     print(f"{colours.OKGREEN}{gear} successfully unequiped!{colours.ENDC}")
 
