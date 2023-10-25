@@ -1,10 +1,17 @@
 import colours
+import utils
 
 data = None
 
 def equip(gear: str) -> None:
     """Equip a piece of gear."""
     gear = gear.lower()
+    if gear not in utils.ITEMS:
+        print(f"{colours.FAIL}That isn't a real item!{colours.ENDC}")
+        return
+    if utils.ITEMS[gear]["type"] != "gear":
+        print(f"{colours.FAIL}That item is not a piece of gear!{colours.ENDC}")
+        return
     if gear not in data.inventory:
         print(f"{colours.FAIL}You don't have this gear!{colours.ENDC}")
         return
@@ -16,6 +23,12 @@ def equip(gear: str) -> None:
 def unequip(gear: str) -> None:
     """unequip a piece of gear"""
     gear = gear.lower()
+    if gear not in utils.ITEMS:
+        print(f"{colours.FAIL}That isn't a real item!{colours.ENDC}")
+        return
+    if utils.ITEMS[gear]["type"] != "gear":
+        print(f"{colours.FAIL}That item is not a piece of gear!{colours.ENDC}")
+        return
     for slot, value in data.gear.items():
         if value == gear:
             data.gear[slot] = None
