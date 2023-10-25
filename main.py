@@ -38,7 +38,10 @@ plugins = {
 # Get every command in each plugin
 commands = {}
 for plugin in plugins.values():
-    plugin.load(data)
+    if plugin.__name__ != "misc":
+        plugin.load(data)
+    else:
+        plugin.load(data, plugins)
     for name, value in inspect.getmembers(plugin, inspect.isfunction):
         if name != "load":
             commands[name] = value
