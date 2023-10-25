@@ -4,8 +4,8 @@
         "sell-price": 15,
         "type": "gear",
         "slot": "back",
-        "equiped": {
-            "max-inventory": 5
+        "modifier": {
+            "max_inventory": 5
         }
     }
 }
