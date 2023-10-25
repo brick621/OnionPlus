@@ -32,7 +32,8 @@ data = utils.SaveData(name, not load)
 plugins = {
     "simplegain": importlib.import_module("simplegain"),
     "see": importlib.import_module("see"),
-    "interact": importlib.import_module("interact")
+    "interact": importlib.import_module("interact"),
+    "misc": importlib.import_module("misc")
 }
 # Get every command in each plugin
 commands = {}
