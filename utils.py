@@ -44,6 +44,7 @@ class SaveData:
             "savedata": {
                 "money": self.money,
                 "inventory": self.inventory,
+                "max_inventory": self.max_inventory
                 "gear": {
                     "hat": self.gear["hat"],
                     "back": self.gear["back"],
@@ -61,6 +62,7 @@ class SaveData:
     def _from_dict(self, values: dict) -> None:
         self.money = values["savedata"].get("money", _STARTING_MONEY)
         self.inventory = values["savedata"].get("inventory", _STARTING_INVENTORY)
+        self.max_inventory = values["savedata"].get("max_inventory", 0)
         self.gear = values["savedata"].get("gear", _STARTING_GEAR)
         # Add any new gear slots that may have been added in updates
         for slot, value in _STARTING_GEAR.items():
