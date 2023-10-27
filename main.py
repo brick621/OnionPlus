@@ -11,6 +11,8 @@ import utils
 print(f"{colours.HEADER}Welcome to Onion+!{colours.ENDC}")
 
 savefolder = Path("savefolder/")
+if not savefolder.exists():
+    os.mkdir("savefolder")
 savefilespath = tuple(savefolder.iterdir())
 savefiles = []
 for savefile in savefilespath:
