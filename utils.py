@@ -119,7 +119,7 @@ def get_name(savefiles: typing.Iterable) -> str:
             validname = False
             print("Please enter a name!")
         if name in savefiles:
-            prompt = input(("There is already a savefile called '{name}'."
-                            " would you like to overwrite it? N/y "))
+            prompt = input((f"There is already a savefile called '{name}'."
+                            " would you like to overwrite it? (y/N) "))
             validname = prompt.lower() == "y"
     return name
