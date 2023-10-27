@@ -122,3 +122,4 @@ def get_name(savefiles: typing.Iterable) -> str:
             prompt = input(("There is already a savefile called '{name}'."
                             " would you like to overwrite it? N/y "))
             validname = prompt.lower() == "y"
+    return name
