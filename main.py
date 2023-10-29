@@ -54,6 +54,9 @@ while True:
         continue
     command = prompt[0]
     if command in commands:
-        args = inspect.getfullargspec(commands[command])[0]
-        if len(prompt) >= 1 + len(args):
+        fullargspec = inspect.getfullargspec(commands[command])
+        args = fullargspec[0]
+        defaults = fullargspec[3] or ()
+        required_args = len(args) - len(defaults)
+        if len(prompt) >= 1 + required_args:
             commands[command](*prompt[1:1+len(args)])
