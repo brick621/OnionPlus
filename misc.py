@@ -8,9 +8,6 @@ import colours
 data = None
 plugins = {}
 
-# TODO: generate a dictionary with all the plugins and commands outside
-#  the help command (basically fix up the help command)
-
 def help() -> None:
     """Describe what each command does"""
     print(f"{colours.HEADER}HELP{colours.ENDC}")
@@ -20,7 +17,7 @@ def help() -> None:
         for f_name, value in plugin.items():
             if f_name == "_docstring": continue
             args = value["args"]
-            docstring = value["docstring"]
+            docstring = value["docstring"].splitlines()[0]
             if not args:
                 print(f"{colours.BOLD}• {f_name}:{colours.ENDC}",
                       f"{docstring}")
