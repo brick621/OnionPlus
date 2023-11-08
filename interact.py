@@ -27,7 +27,7 @@ def equip(gear: str) -> None:
     print(f"{colours.OKGREEN}{gear} successfully equiped!{colours.ENDC}")
 
 def unequip(gear: str) -> None:
-    """unequip a piece of gear"""
+    """Unequip a piece of gear."""
     gear = gear.lower()
     if gear not in utils.ITEMS:
         print(f"{colours.FAIL}That isn't a real item!{colours.ENDC}")
