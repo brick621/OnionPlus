@@ -7,6 +7,8 @@ from shutil import copy
 import time
 import typing
 
+import colours
+
 _STARTING_MONEY = 100
 _STARTING_INVENTORY = []
 _STARTING_GEAR = {
@@ -91,6 +93,18 @@ class SaveData:
 
         self.created = values["metadata"].get("created", int(time.time()))
 
+
+def money(money: int, colour: str = "") -> str:
+    """Return a formated currency.
+
+    Arguments:
+    money -- the money to format
+    colour -- ANSI escape sequence
+    """
+    if colour:
+        return f"{colour}${money / 100:,.2f}{colours.ENDC}"
+    else:
+        return f"${money / 100:,.2f}"
 
 def choice(name: str) -> str:
     """Given the name of a file in resources, pick a random line.

@@ -2,8 +2,8 @@
     "knapsack": {
         "description": "A small bag to be equiped on one's back",
         "tags": ["tool"],
-        "buy-price": 20,
-        "sell-price": 15,
+        "buy-price": 2000,
+        "sell-price": 1500,
         "type": "gear",
         "slot": "back",
         "modifier": {
@@ -13,16 +13,16 @@
     "stick": {
         "description": "A simple wooden stick that fell from a tree. Or a bush. Or a hedge.",
         "tags": ["natural", "flammable", "wooden"],
-        "buy-price": 2,
-        "sell-price": 0,
+        "buy-price": 60,
+        "sell-price": 20,
         "type": "material",
         "category": "raw"
     },
     "flint": {
         "description": "Sharp, durable rock. Creates a spark of fire when struck with steel.",
         "tags": ["natural", "rock"],
-        "buy-price": 40,
-        "sell-price": 30,
+        "buy-price": 80,
+        "sell-price": 60,
         "type": "material",
         "category": "raw"
     },
@@ -30,23 +30,23 @@
         "description": "A used container for liquids.",
         "tags": ["metal"],
         "buy-price": 0,
-        "sell-price": 0,
+        "sell-price": 5,
         "type": "material",
         "category": "waste"
     },
     "glass-bottle": {
         "description": "A bottle made of fragile material.",
         "tags": ["fluid-container"],
-        "buy-price": 5,
-        "sell-price": 1,
+        "buy-price": 50,
+        "sell-price": 15,
         "type": "material",
         "category": "waste"
     },
     "plastic-bottle": {
         "description": "A durable bottle. Kind of reusable, although unrecommened.",
         "tags": ["fluid-container"],
-        "buy-price": 4,
-        "sell-price": 0,
+        "buy-price": 50,
+        "sell-price": 5,
         "type": "material",
         "category": "waste"
     }

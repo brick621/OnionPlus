@@ -12,10 +12,12 @@ def beg() -> None:
     global data
     if random.random() <= 0.2:
         # Success
-        given_money = random.randint(1, 5)
+        pool = 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000
+        weights = 1, 1, 2, 5, 5, 10, 20, 15, 10, 1
+        given_money = random.choices(pool, weights)[0]
         data.money += given_money
         data.save()
-        print('"' + utils.choice("yesbeg").format(given_money) + '"')
+        print('"' + utils.choice("yesbeg").format(utils.money(given_money, colours.OKBLUE)) + '"')
     else:
         # No money :(
         print('"' + utils.choice("nobeg") + '"')
@@ -47,7 +49,7 @@ def search() -> None:
 
     message_parts = []
     if money_got:
-        message_parts.append(f"{colours.OKBLUE}${money_got}{colours.ENDC}")
+        message_parts.append(f"{utils.money(money_got, colours.OKBLUE)}")
     if items_got:
         item_count = {}
         for item in items_got:

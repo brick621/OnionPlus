@@ -7,7 +7,7 @@ data = None
 
 def cash() -> None:
     """See the amount of cash you have."""
-    print(f"${data.money}")
+    print(utils.money(data.money))
 
 def gear() -> None:
     """See what gear you currently have equiped."""
