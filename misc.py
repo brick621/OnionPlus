@@ -8,32 +8,59 @@ import colours
 data = None
 plugins = {}
 
-def help() -> None:
-    """Describe what each command does"""
-    print(f"{colours.HEADER}HELP{colours.ENDC}")
-    for p_name, plugin in plugins.items():
-        print(f"\n{colours.UNDERLINE}{p_name} -",
-              f"{plugin['_docstring']}{colours.ENDC}")
-        for f_name, value in plugin.items():
-            if f_name == "_docstring": continue
-            args = value["args"]
-            docstring = value["docstring"].splitlines()[0]
-            if not args:
-                print(f"{colours.BOLD}• {f_name}:{colours.ENDC}",
-                      f"{docstring}")
-            else:
-                args_str = ""
-                for arg, default in args:
-                    if default is not None:
-                        if default == "":
-                            args_str += f"[{arg}: ''] "
+def help(command: str = "") -> None:
+    """Describe what each command does."""
+    if not command:
+        for p_name, plugin in plugins.items():
+            print(f"{colours.UNDERLINE}{p_name} -",
+                f"{plugin['_docstring']}{colours.ENDC}")
+            for f_name, value in plugin.items():
+                if f_name == "_docstring": continue
+                args = value["args"]
+                docstring = value["docstring"].splitlines()[0]
+                if not args:
+                    print(f"{colours.BOLD}• {f_name}:{colours.ENDC}",
+                        f"{docstring}")
+                else:
+                    args_str = ""
+                    for arg, default in args:
+                        if default is not None:
+                            if default == "":
+                                args_str += f"[{arg}: ''] "
+                            else:
+                                args_str += f"[{arg}: {default}] "
                         else:
-                            args_str += f"[{arg}: {default}] "
+                            args_str += f"[{arg}] "
+                    args_str = args_str.strip()
+                    print(f"{colours.BOLD}• {f_name} {args_str}:{colours.ENDC}",
+                        f"{docstring}")
+            print()
+    else:
+        command = command.lower()
+        for name, plugin in plugins.items():
+            if command in plugin:
+                plugin_name = name
+                break
+        else:
+            print(f"Command '{command}' could not be found")
+            return
+        args = plugins[plugin_name][command]["args"]
+        docstring =  plugins[plugin_name][command]["docstring"]
+        print(f"{colours.UNDERLINE}{plugin_name}{colours.ENDC}")
+        if not args:
+            print(f"{colours.BOLD}{command}:{colours.ENDC} {docstring}")
+        else:
+            args_str = ""
+            for arg, default in args:
+                if default is not None:
+                    if default == "":
+                        args_str += f"[{arg}: ''] "
                     else:
-                        args_str += f"[{arg}] "
-                args_str = args_str.strip()
-                print(f"{colours.BOLD}• {f_name} {args_str}:{colours.ENDC}",
-                      f"{docstring}")
+                        args_str += f"[{arg}: {default}] "
+                else:
+                    args_str += f"[{arg}] "
+            args_str = args_str.strip()
+            print(f"{colours.BOLD}{command} {args_str}:{colours.ENDC} {docstring}")
 
 def reload() -> None:
     """Reload the save file. (mainly used for debugging)"""
