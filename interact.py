@@ -5,6 +5,7 @@ import utils
 
 data = None
 
+
 def equip(gear: str) -> None:
     """Equip a piece of gear."""
     gear = gear.lower()
@@ -25,6 +26,7 @@ def equip(gear: str) -> None:
         setattr(data, attr, current_value + effect)
     data.save()
     print(f"{colours.OKGREEN}{gear} successfully equiped!{colours.ENDC}")
+
 
 def unequip(gear: str) -> None:
     """Unequip a piece of gear."""
@@ -50,7 +52,10 @@ def unequip(gear: str) -> None:
         print(f"{colours.OKGREEN}{gear} successfully unequiped!{colours.ENDC}")
     else:
         data.load()
-        print(f"{colours.FAIL}This piece of gear is critical for max inventory!{colours.ENDC}")
+        print(
+            f"{colours.FAIL}This piece of gear is critical for max inventory!{colours.ENDC}"
+        )
+
 
 def load(savedata) -> None:
     global data

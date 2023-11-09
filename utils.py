@@ -16,11 +16,12 @@ _STARTING_GEAR = {
     "back": "knapsack",
     "waist": None,
     "ring-l": None,
-    "ring-r": None
+    "ring-r": None,
 }
 
 with open(os.path.join("resources", "items.json")) as f:
     ITEMS = json.load(f)
+
 
 class SaveData:
     """User save data for the game."""
@@ -72,13 +73,10 @@ class SaveData:
                     "back": self.gear["back"],
                     "waist": self.gear["waist"],
                     "ring-l": self.gear["ring-l"],
-                    "ring-r": self.gear["ring-r"]
-                }
+                    "ring-r": self.gear["ring-r"],
+                },
             },
-            "metadata": {
-                "created": self.created,
-                "modified": int(time.time())
-            }
+            "metadata": {"created": self.created, "modified": int(time.time())},
         }
 
     def _from_dict(self, values: dict) -> None:
@@ -106,6 +104,7 @@ def money(money: int, colour: str = "") -> str:
     else:
         return f"${money / 100:,.2f}"
 
+
 def choice(name: str) -> str:
     """Given the name of a file in resources, pick a random line.
 
@@ -116,6 +115,7 @@ def choice(name: str) -> str:
     """
     with open(os.path.join("resources", name)) as f:
         return random.choice(f.readlines()).strip()
+
 
 def get_name(savefiles: typing.Iterable) -> str:
     """Get the user to input a name for a savefile.
@@ -133,7 +133,8 @@ def get_name(savefiles: typing.Iterable) -> str:
             validname = False
             print("Please enter a name!")
         if name in savefiles:
-            prompt = input((f"There is already a savefile called '{name}'."
-                            " would you like to overwrite it? (y/N) "))
+            prompt = input(
+                f"There is already a savefile called '{name}'. would you like to overwrite it? (y/N) "
+            )
             validname = prompt.lower() == "y"
     return name

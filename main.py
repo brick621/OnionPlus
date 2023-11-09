@@ -35,7 +35,7 @@ plugins = {
     "simplegain": importlib.import_module("simplegain"),
     "see": importlib.import_module("see"),
     "interact": importlib.import_module("interact"),
-    "misc": importlib.import_module("misc")
+    "misc": importlib.import_module("misc"),
 }
 # Get every command in each plugin
 commands = {}
@@ -59,4 +59,4 @@ while True:
         defaults = fullargspec[3] or ()
         required_args = len(args) - len(defaults)
         if len(prompt) >= 1 + required_args:
-            commands[command](*prompt[1:1+len(args)])
+            commands[command](*prompt[1 : 1 + len(args)])
