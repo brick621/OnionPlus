@@ -22,6 +22,8 @@ def inventory(arg: str = "") -> None:
 
     Enter with argument "detailed" to see more info on the items.
     """
+    if not data.inventory:
+        print(f"{colours.WARNING}You don't have any items!{colours.ENDC}")
     for item in set(data.inventory):
         print(f"{data.inventory.count(item)} {colours.HEADER}{item}{colours.ENDC}")
         if arg == "detailed":
