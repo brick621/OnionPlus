@@ -53,6 +53,9 @@ while True:
     prompt = input(f"{colours.BOLD}> {colours.ENDC}").split(" ")
     if not prompt:
         continue
+    for i, argument in enumerate(prompt[1:]):
+        if argument.isnumeric():
+            prompt[i + 1] = int(argument)
     command = prompt[0]
     if command in commands:
         fullargspec = inspect.getfullargspec(commands[command])
