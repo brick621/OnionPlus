@@ -36,6 +36,7 @@ plugins = {
     "see": importlib.import_module("see"),
     "interact": importlib.import_module("interact"),
     "misc": importlib.import_module("misc"),
+    "shop": importlib.import_module("shop"),
 }
 # Get every command in each plugin
 commands = {}
