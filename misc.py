@@ -88,7 +88,8 @@ def load(savedata, extensions) -> None:
             if name != "load":
                 fullargspec = inspect.getfullargspec(value)
                 args = fullargspec[0]
-                defaults = fullargspec[3] or []
+                defaults = fullargspec[3] or ()
+                defaults = list(defaults)
                 argslen = len(args)
                 plugins[plugin.__name__][name] = {
                     "args": [],
