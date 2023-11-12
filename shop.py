@@ -1,3 +1,5 @@
+"""Commands for dealing with selling and buying items."""
+
 data = None
 
 
