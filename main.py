@@ -50,7 +50,7 @@ for plugin in plugins.values():
             commands[name] = value
 
 while True:
-    prompt = input(f"{colours.BOLD}> {colours.ENDC}").strip().split(" ")
+    prompt = input(f"{colours.BOLD}> {colours.ENDC}").lower().strip().split(" ")
     if not prompt:
         continue
     command = prompt[0]
