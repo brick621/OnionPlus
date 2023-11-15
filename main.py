@@ -50,17 +50,25 @@ for plugin in plugins.values():
             commands[name] = value
 
 while True:
-    prompt = input(f"{colours.BOLD}> {colours.ENDC}").split(" ")
+    prompt = input(f"{colours.BOLD}> {colours.ENDC}").strip().split(" ")
     if not prompt:
         continue
-    for i, argument in enumerate(prompt[1:]):
-        if argument.isnumeric():
-            prompt[i + 1] = int(argument)
     command = prompt[0]
     if command in commands:
         fullargspec = inspect.getfullargspec(commands[command])
         args = fullargspec[0]
         defaults = fullargspec[3] or ()
         required_args = len(args) - len(defaults)
+        annotations = fullargspec[-1]
+        valid_args = True
+        for i, arg, parameter_type in tuple(zip(range(len(prompt)), prompt, annotations.values()))[1:]:
+            try:
+                prompt[i] = parameter_type(arg)
+            except ValueError:
+                print(f"{colours.FAIL}Invalid argument type.{colours.ENDC}")
+                valid_args = False
+                break
+        if not valid_args:
+            continue
         if len(prompt) >= 1 + required_args:
             commands[command](*prompt[1 : 1 + len(args)])
