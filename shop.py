@@ -11,7 +11,7 @@ def sell(item: str, quantity: int = 1) -> None:
 
     Arguments:
     item -- the item you want to sell
-    quantity -- the amount of items (any number higher than what you have will sell all).
+    quantity -- the amount of items (any number higher than what you have will sell all)
     """
     global data
 
@@ -37,6 +37,14 @@ def sell(item: str, quantity: int = 1) -> None:
     data.save()
 
     print(f"{colours.OKGREEN}You earned {utils.money(money_earned, colours.OKBLUE)}{colours.OKGREEN}!{colours.ENDC}")
+
+
+def shop(category: str) -> None:
+    """View the items for sale.
+
+    Arguments:
+    category -- what you would like to see.
+    """
 
 
 def load(savedata) -> None:
