@@ -1,5 +1,7 @@
 """Commands for dealing with selling and buying items."""
 
+import json
+
 import colours
 import utils
 
@@ -39,12 +41,20 @@ def sell(item: str, quantity: int = 1) -> None:
     print(f"{colours.OKGREEN}You earned {utils.money(money_earned, colours.OKBLUE)}{colours.OKGREEN}!{colours.ENDC}")
 
 
-def shop(category: str) -> None:
+def shop(category: str = "") -> None:
     """View the items for sale.
 
     Arguments:
     category -- what you would like to see.
     """
+    with open("resources/shop.json") as f:
+        market = json.load(f)
+
+    for category, items in market.items():
+        print(f"{colours.UNDERLINE}{category}{colours.ENDC}")
+        for item in items:
+            print(f"{item}, {utils.money(utils.ITEMS[item]['buy-price'])} -- {utils.ITEMS[item]['description']}")
+        print()
 
 
 def load(savedata) -> None:
