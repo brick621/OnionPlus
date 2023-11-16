@@ -10,6 +10,28 @@
             "max_inventory": 5
         }
     },
+    "backpack": {
+        "description": "A medium-sized bag to be equiped on one's back",
+        "tags": ["tool"],
+        "buy-price": 4000,
+        "sell-price": 2500,
+        "type": "gear",
+        "slot": "back",
+        "modifier": {
+            "max_inventory": 12
+        }
+    },
+    "rucksack": {
+        "description": "A large bag to be equiped on one's back",
+        "tags": ["tool"],
+        "buy-price": 6000,
+        "sell-price": 3500,
+        "type": "gear",
+        "slot": "back",
+        "modifier": {
+            "max_inventory": 25
+        }
+    },       
     "stick": {
         "description": "A simple wooden stick that fell from a tree. Or a bush. Or a hedge.",
         "tags": ["natural", "flammable", "wooden"],
