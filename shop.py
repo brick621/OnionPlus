@@ -26,7 +26,7 @@ def sell(item: str, quantity: int = 1) -> None:
         return
 
     if quantity <= 0:
-        print(f"{colours.FAIL}You have to have a positive quantity{colours.ENDC}")
+        print(f"{colours.FAIL}You have to give a positive quantity{colours.ENDC}")
         return
 
     if quantity > data.inventory.count(item):
@@ -39,6 +39,15 @@ def sell(item: str, quantity: int = 1) -> None:
     data.save()
 
     print(f"{colours.OKGREEN}You earned {utils.money(money_earned, colours.OKBLUE)}{colours.OKGREEN}!{colours.ENDC}")
+
+
+def buy(item: str, quantity: int) -> None:
+    """Recieve some items in exchange for some cash.
+
+    Arguments:
+    item -- the item you want to buy
+    quantity -- the amount of the chosen item
+    """
 
 
 def shop(category: str = "") -> None:
