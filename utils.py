@@ -39,18 +39,21 @@ class SaveData:
         else:
             self._from_dict({"savedata": {}, "metadata": {}})
 
-    def add_item(self, item: str) -> bool:
+    def add_item(self, item: str, quantity: int = 1) -> bool:
         """Add an item to inventory.
 
         Arguments:
         item -- the item to add
+        quantity -- how much of this item
 
         Returns True if successful, False otherwise.
         """
-        if len(self.inventory) == self.max_inventory:
+        # Check amount of space in inventory
+        if self.max_inventory - len(self.inventory) < quantity:
             return False
         else:
-            self.inventory.append(item)
+            for _ in range(quantity):
+                self.inventory.append(item)
             return True
 
     def save(self) -> None:
