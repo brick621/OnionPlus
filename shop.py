@@ -6,6 +6,8 @@ import colours
 import utils
 
 data = None
+with open("resources/shop.json") as f:
+    market = json.load(f)
 
 
 def sell(item: str, quantity: int = 1) -> None:
@@ -41,13 +43,38 @@ def sell(item: str, quantity: int = 1) -> None:
     print(f"{colours.OKGREEN}You earned {utils.money(money_earned, colours.OKBLUE)}{colours.OKGREEN}!{colours.ENDC}")
 
 
-def buy(item: str, quantity: int) -> None:
+def buy(item: str, quantity: int = 1) -> None:
     """Recieve some items in exchange for some cash.
 
     Arguments:
     item -- the item you want to buy
     quantity -- the amount of the chosen item
     """
+    global data
+
+    if quantity <= 0:
+        print(f"{colours.FAIL}You have to give a positive quantity!{colours.ENDC}")
+        return
+
+    if not any([item in category for category in market.values()]):
+        print(f"{colours.FAIL}That item either doesn't exist or isn't for sale{colours.ENDC}")
+        return
+
+    item_data = utils.ITEMS[item]
+    price = item_data["buy-price"] * quantity
+    if price > data.money:
+        print(f"{colours.FAIL}You can't afford this purchase!{colours.ENDC}")
+        return
+
+    if data.max_inventory - len(data.inventory) < quantity:
+        print(f"{colours.FAIL}You don't have enough inventory space to make this purchase{colours.ENDC}")
+        return
+
+    data.money -= price
+    data.add_item(item, quantity)
+    data.save()
+
+    print(f"{colours.OKGREEN}Purchase success!{colours.ENDC}")
 
 
 def shop(category: str = "") -> None:
@@ -56,8 +83,6 @@ def shop(category: str = "") -> None:
     Arguments:
     category -- what you would like to see.
     """
-    with open("resources/shop.json") as f:
-        market = json.load(f)
 
     for category, items in market.items():
         print(f"{colours.UNDERLINE}{category}{colours.ENDC}")
