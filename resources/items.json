@@ -1,6 +1,6 @@
 {
     "knapsack": {
-        "description": "A small bag to be equiped on one's back",
+        "description": "A small bag to be equipped on one's back",
         "tags": ["tool"],
         "buy-price": 2000,
         "sell-price": 1500,
@@ -11,7 +11,7 @@
         }
     },
     "backpack": {
-        "description": "A medium-sized bag to be equiped on one's back",
+        "description": "A medium-sized bag to be equipped on one's back",
         "tags": ["tool"],
         "buy-price": 4000,
         "sell-price": 2500,
@@ -22,7 +22,7 @@
         }
     },
     "rucksack": {
-        "description": "A large bag to be equiped on one's back",
+        "description": "A large bag to be equipped on one's back",
         "tags": ["tool"],
         "buy-price": 6000,
         "sell-price": 3500,
