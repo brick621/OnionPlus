@@ -19,9 +19,16 @@ def equip(gear: str) -> None:
         print(f"{colours.FAIL}You don't have this gear!{colours.ENDC}")
         return
 
+    unequipped = None
+    if data.gear[utils.ITEMS[gear]["slot"]]:
+        unequipped = data.gear[utils.ITEMS[gear]["slot"]]
     data.gear[utils.ITEMS[gear]["slot"]] = gear
     data.inventory.remove(gear)
+    if unequipped:
+        data.add_item(unequipped)
+
     for attr, effect in utils.ITEMS[gear]["modifier"].items():
+        # Set the new value of each effect
         current_value = getattr(data, attr, 0)
         setattr(data, attr, current_value + effect)
     data.save()
